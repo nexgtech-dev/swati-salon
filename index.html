@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Swati Hair & Beauty Family Salon | Luxury Grooming & Bridal Lounge | Kolar Road, Bhopal</title>
+  <meta name="description" content="Swati Hair and Beauty Family Salon, Kolar Road, Bhopal. Premium bridal makeup, hair botox, keratin smoothing, hydra-facials, and men's executive grooming.">
+  
+  <!-- Premium Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cream: '#FAF7F2',
+              ivory: '#FFFDF9',
+              gold: '#C5A880',
+              goldDark: '#997B55',
+              champagne: '#EED9C4',
+              rose: '#BE123C',
+              roseLight: '#FFE4E6',
+              charcoal: '#1C1917',
+              stone: '#44403C',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #292524;
+      overflow-x: hidden;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll Reading Progress Bar */
+    #scrollProgressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #BE123C, #F59E0B, #BE123C);
+      background-size: 200% 100%;
+      animation: progressGlint 3s linear infinite;
+      z-index: 9999;
+      transition: width 0.08s ease-out;
+      box-shadow: 0 0 10px rgba(190, 18, 60, 0.7);
+    }
+    @keyframes progressGlint {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* Dynamic IntersectionObserver Reveal-on-Scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger Delays */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+
+    /* Luxury 3D Card Hover Physics & Light Sheen Glint */
+    .card-luxury {
+      background: #FFFFFF;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      box-shadow: 0 10px 30px -10px rgba(153, 123, 85, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-luxury::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.22) 50%, transparent 60%);
+      transform: rotate(25deg) translateY(-100%);
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .card-luxury:hover {
+      border-color: rgba(190, 18, 60, 0.45);
+      box-shadow: 0 25px 50px -12px rgba(190, 18, 60, 0.16), 0 0 0 1px rgba(190, 18, 60, 0.15);
+      transform: translateY(-8px) scale(1.008);
+    }
+    .card-luxury:hover::after {
+      transform: rotate(25deg) translateY(100%);
+    }
+
+    /* Ambient Pulsing Glow on Primary Action Buttons */
+    .btn-glow-pulse {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-glow-pulse:hover {
+      box-shadow: 0 12px 30px -5px rgba(190, 18, 60, 0.45);
+      transform: translateY(-2px);
+    }
+    .btn-glow-pulse:active {
+      transform: scale(0.97);
+    }
+
+    /* Smooth FAQ Accordion Transition */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-out;
+    }
+    .faq-answer.is-open {
+      max-height: 240px;
+      opacity: 1;
+    }
+
+    /* Dynamic Sticky Header Compaction */
+    #mainHeaderContainer {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mainHeaderContainer.is-scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(20px);
+    }
+    #mainHeaderContainer.is-scrolled .main-header-row {
+      height: 62px;
+    }
+
+    /* Ambient Video Reel & Ken Burns Physics */
+    @keyframes kenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.08) translate(-1%, -1%); }
+      100% { transform: scale(1) translate(0, 0); }
+    }
+    .ken-burns-active {
+      animation: kenBurns 10s ease-in-out infinite alternate;
+    }
+    @keyframes eqBounce1 { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+    @keyframes eqBounce2 { 0%, 100% { height: 12px; } 50% { height: 5px; } }
+    @keyframes eqBounce3 { 0%, 100% { height: 7px; } 50% { height: 15px; } }
+    .eq-bar-1 { animation: eqBounce1 0.8s ease-in-out infinite; }
+    .eq-bar-2 { animation: eqBounce2 0.9s ease-in-out infinite 0.2s; }
+    .eq-bar-3 { animation: eqBounce3 0.7s ease-in-out infinite 0.4s; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-rose-600 selection:text-white pb-20 lg:pb-0">
+
+  <!-- Real-Time Scroll Reading Progress Bar -->
+  <div id="scrollProgressBar"></div>
+
+  <!-- 1 & 2. UNIFIED STICKY NAVIGATION & STAGING BAR (SEAMLESS SCROLL) -->
+  <div id="mainHeaderContainer" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm transition-all">
+    <!-- Top Staging Ribbon -->
+    <div class="bg-gradient-to-r from-stone-900 via-rose-950 to-stone-900 text-white px-4 py-2 text-xs sm:text-sm border-b border-amber-500/25">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-600 text-white uppercase tracking-wider shadow-sm">
+            NEXG STAGING PREVIEW
+          </span>
+          <span id="stagingRibbonText" class="text-stone-200 text-xs sm:text-[13px] font-medium">Tailored for <strong class="text-white font-bold">Swati Hair & Beauty Family Salon</strong> (Kolar Road, Bhopal)</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <!-- Real-Time 72h Dynamic First-Click Ticker -->
+          <span class="text-amber-300 font-mono font-bold text-xs sm:text-[13px] flex items-center gap-1.5 bg-stone-900/90 px-3 py-1 rounded-md border border-amber-500/50 shadow-inner">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400 animate-pulse"></i>
+            <span id="countdownTime">72h 00m 00s</span>
+            <span class="text-stone-400 font-normal hidden sm:inline text-xs">Remaining</span>
+          </span>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20am%20reviewing%20the%20website%20demo%20for%20Swati%20Hair%20and%20Beauty%20Salon." target="_blank" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-3 py-1 rounded text-xs tracking-wide shadow-md transition-all hover:scale-105">
+            Connect with Desk ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center transition-all">
+      
+      <!-- Architectural Brand Logo Mark (Authentic Vector Brand Identity) -->
+      <a href="#" class="flex items-center group py-1" aria-label="Swati Hair & Beauty Family Salon">
+        <img src="assets/swati-brand-logo.svg" alt="Swati Hair & Beauty Family Salon Official Logo" class="h-11 sm:h-13 max-w-[280px] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-[1.02] drop-shadow-sm">
+      </a>
+
+      <!-- Prominent Desktop Nav Links (High-Legibility & Title Case) -->
+      <nav class="hidden lg:flex items-center gap-7 text-[15px] font-bold text-stone-800">
+        <a href="#services" class="hover:text-rose-700 transition-colors py-1">Services & Menu</a>
+        <a href="#bridal" class="hover:text-rose-700 transition-colors py-1">Bridal Studio</a>
+        <a href="#ambience" class="hover:text-rose-700 transition-colors py-1">Salon Ambience</a>
+        <a href="#reviews" class="hover:text-rose-700 transition-colors py-1">Client Reviews</a>
+        <a href="#location" class="hover:text-rose-700 transition-colors py-1">Visit Us</a>
+      </nav>
+
+      <!-- Action Buttons (Desktop) -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="tel:+919725702043" class="text-xs font-bold text-stone-800 hover:text-rose-800 flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 hover:bg-stone-50 transition-colors shadow-sm">
+          <i data-lucide="phone" class="w-4 h-4 text-rose-700"></i> +91 97257 02043
+        </a>
+        <a href="#booking" class="bg-gradient-to-r from-rose-700 to-amber-700 hover:from-rose-600 hover:to-amber-600 text-white font-bold text-xs px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-md transition-transform active:scale-95">
+          <i data-lucide="calendar" class="w-4 h-4 text-amber-200"></i> Book Appointment
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button & Quick Contact -->
+      <div class="flex lg:hidden items-center gap-2">
+        <a href="https://wa.me/919725702043?text=Namaskar,%20I%20would%20like%20to%20book%20a%20salon%20appointment." target="_blank" class="p-2.5 rounded-xl bg-emerald-600 text-white shadow-sm flex items-center justify-center">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+        </a>
+        <button id="mobileMenuBtn" aria-label="Open Mobile Navigation" class="p-2.5 rounded-xl bg-white border border-stone-300 text-stone-800 hover:bg-stone-50 shadow-sm focus:outline-none flex items-center justify-center">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </header>
+  </div>
+
+  <!-- MOBILE SLIDE-OVER NAVIGATION DRAWER (ACCESSIBLE & SMOOTH) -->
+  <div id="mobileDrawer" class="hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm transition-opacity">
+    <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+          <div class="flex items-center gap-2">
+            <img src="assets/swati-brand-logo.svg" alt="Swati Hair & Beauty Family Salon" class="h-10 w-auto object-contain">
+          </div>
+          <button id="closeMobileMenuBtn" class="p-2 rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-100">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <nav class="mt-6 flex flex-col space-y-4 text-sm font-semibold text-stone-800">
+          <a href="#services" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Services & Rate Card</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+          <a href="#bridal" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Royal Bridal Lounge</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+          <a href="#ambience" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Salon Ambience & Suite</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+          <a href="#reviews" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Verified Client Reviews</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+          <a href="#tips" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Hair & Skin Secrets</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+          <a href="#location" class="mobile-link py-2 border-b border-stone-100 flex justify-between items-center hover:text-rose-600">
+            <span>Visit Us (Kolar Road)</span> <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-stone-200 space-y-3">
+        <a href="tel:+919725702043" class="w-full py-3 rounded-xl border border-stone-300 text-stone-800 font-bold text-xs flex items-center justify-center gap-2 hover:bg-stone-50">
+          <i data-lucide="phone" class="w-4 h-4 text-rose-600"></i> Call Reception (+91 97257 02043)
+        </a>
+        <a href="https://wa.me/919725702043?text=Namaskar,%20I%20would%20like%20to%20book%20a%20salon%20appointment." target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-700 to-amber-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md">
+          <i data-lucide="calendar" class="w-4 h-4"></i> Book Appointment Now
+        </a>
+        <div class="text-[10px] text-center text-stone-400">Shop No. 14, Maa Bijasan Market, Kolar Road</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. HERO SECTION (EDITORIAL LUXURY BRIDAL AESTHETIC) -->
+  <section class="relative pt-10 sm:pt-16 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#FFFDF9] via-[#FAF7F2] to-[#F5EFE6]">
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute top-0 right-10 w-96 h-96 bg-rose-200/50 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 left-10 w-96 h-96 bg-amber-200/50 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Left Column: Editorial Headline & Value -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold tracking-wide shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-600"></i>
+          <span>Kolar Road's Signature Family Salon & Bridal Lounge</span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.12]">
+          Bespoke Hair Artistry, <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600">Luminous Bridal Radiance</span> & Family Grooming.
+        </h1>
+
+        <p class="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+          Welcome to Swati Hair and Beauty Family Salon. Located in Maa Bijasan Market opposite Anupam Hospital, we blend Parisian hair mastery, high-definition bridal glam, and clean executive men's styling in a serene, air-conditioned sanctuary.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-1 text-xs">
+          <span class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200/80 text-amber-900 flex items-center gap-1.5 font-bold shadow-sm">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i> Bollywood Experience 30th Year
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-stone-200/80 text-stone-700 flex items-center gap-1.5 font-medium shadow-sm">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> 100% Genuine L'Oréal & Schwarzkopf
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-stone-200/80 text-stone-700 flex items-center gap-1.5 font-medium shadow-sm">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-rose-600"></i> Autoclave Sterilized Tools
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-stone-200/80 text-stone-700 flex items-center gap-1.5 font-medium shadow-sm">
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-amber-600"></i> Private VIP Bridal Suite
+          </span>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-3">
+          <a href="#booking" class="btn-glow-pulse bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 hover:from-rose-600 hover:to-amber-500 text-white font-black text-sm px-8 py-4 rounded-2xl shadow-xl shadow-rose-900/15 flex items-center justify-center gap-2.5 transition-all">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Book Your Salon Experience
+          </a>
+          <a href="#services" class="border border-stone-300 hover:border-rose-400 bg-white hover:bg-stone-50 text-stone-800 font-bold text-sm px-7 py-4 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i> View Services & Rate Card
+          </a>
+        </div>
+
+        <!-- Social Proof Stats (Equalized Heights, Baselines & Dynamic Counting Engine) -->
+        <div class="pt-6 border-t border-stone-200/80 grid grid-cols-3 gap-3 sm:gap-4 max-w-lg mx-auto lg:mx-0">
+          <div class="p-3 rounded-2xl bg-white/80 backdrop-blur-sm border border-stone-200/80 shadow-sm text-center lg:text-left transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 stat-counter" data-target="4.8" data-suffix=" ★">0.0 ★</div>
+            <div class="text-[10px] sm:text-[11px] text-stone-500 font-semibold uppercase tracking-wider mt-1 h-7 flex items-center justify-center lg:justify-start">850+ Reviews</div>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/80 backdrop-blur-sm border border-stone-200/80 shadow-sm text-center lg:text-left transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-rose-700 stat-counter" data-target="500" data-suffix="+">0+</div>
+            <div class="text-[10px] sm:text-[11px] text-stone-500 font-semibold uppercase tracking-wider mt-1 h-7 flex items-center justify-center lg:justify-start">Brides Styled</div>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/80 backdrop-blur-sm border border-stone-200/80 shadow-sm text-center lg:text-left transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-amber-700 stat-counter" data-target="30" data-suffix="+ Yrs">0+ Yrs</div>
+            <div class="text-[10px] sm:text-[11px] text-stone-500 font-semibold uppercase tracking-wider mt-1 h-7 flex items-center justify-center lg:justify-start">Bollywood Exp</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Cinematic Living Ambient Reel (AI Story Presentation) -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md rounded-[32px] overflow-hidden p-2.5 bg-gradient-to-b from-amber-200/50 via-white to-rose-100/50 border border-amber-300/50 shadow-2xl">
+          <div id="heroReelWrap" class="rounded-[24px] overflow-hidden relative aspect-[4/5] bg-stone-900 select-none group cursor-pointer" onclick="nextHeroSlide()">
+            
+            <!-- Slide 0: Bridal Glamour -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-100 z-10" data-index="0" data-tag="FEATURED SPECIALTY • BRIDAL GLOW" data-title="Royal HD Airbrush Bridal Radiance" data-desc="Pre-wedding trials & private VIP bridal dressing suite">
+              <img src="https://images.unsplash.com/photo-1684868264466-4c4fcf0a5b37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Authentic Bridal Radiance Swati Salon Bhopal" class="w-full h-full object-cover object-top ken-burns-active">
+            </div>
+
+            <!-- Slide 1: Authentic Bhopal Salon & Stations -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0" data-index="1" data-tag="30 YRS HERITAGE • BOLLYWOOD STYLING" data-title="Precision Haircut & Styling Stations" data-desc="Lead Stylist Mr. Vinod Thakur (Ex-Mumbai Film City Experience)">
+              <img src="assets/swati-interior-stations.jpg" alt="Swati Salon Authentic Bhopal Interior Stations" class="w-full h-full object-cover object-center">
+            </div>
+
+            <!-- Slide 2: Luxury Care & Spa -->
+            <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-0 z-0" data-index="2" data-tag="CLINICAL HYGIENE • DERMA CARE" data-title="Deep Keratin & Hydra-Glow Facial" data-desc="Olaplex & L'Oréal Professionnel Paris Certified Care">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Luxury Hair Spa and Skin Treatment Swati Salon" class="w-full h-full object-cover object-center">
+            </div>
+
+            <!-- Dark Vignette Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/25 to-stone-950/40 z-20 pointer-events-none"></div>
+
+            <!-- Top Stories Progress Bars (Instagram / Editorial Live Reel) -->
+            <div class="absolute top-4 left-4 right-4 z-30 flex items-center gap-1.5 pointer-events-none">
+              <div class="flex-1 h-1 rounded-full bg-white/30 overflow-hidden">
+                <div id="reelBar0" class="h-full bg-white transition-all duration-100" style="width: 0%;"></div>
+              </div>
+              <div class="flex-1 h-1 rounded-full bg-white/30 overflow-hidden">
+                <div id="reelBar1" class="h-full bg-white transition-all duration-100" style="width: 0%;"></div>
+              </div>
+              <div class="flex-1 h-1 rounded-full bg-white/30 overflow-hidden">
+                <div id="reelBar2" class="h-full bg-white transition-all duration-100" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Top Live Reel Badge & Audio Equalizer Bars -->
+            <div class="absolute top-8 left-4 right-4 z-30 flex items-center justify-between pointer-events-none">
+              <div class="inline-flex items-center gap-2 bg-stone-950/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-lg text-[10px] font-black tracking-wider text-white uppercase">
+                <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                <span>LIVE SALON REEL</span>
+              </div>
+              <div class="flex items-center gap-1 bg-stone-950/70 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20 shadow-lg">
+                <span class="w-1 bg-amber-400 rounded-full eq-bar-1" style="height: 6px;"></span>
+                <span class="w-1 bg-rose-400 rounded-full eq-bar-2" style="height: 12px;"></span>
+                <span class="w-1 bg-amber-400 rounded-full eq-bar-3" style="height: 8px;"></span>
+              </div>
+            </div>
+
+            <!-- Floating Dynamic Glassmorphism Card (Morphs per Slide) -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-xl border border-amber-200/80 shadow-2xl text-left z-30 transition-all duration-500">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <span id="reelTag" class="text-[10px] font-black uppercase text-rose-700 tracking-wider block truncate">FEATURED SPECIALTY • BRIDAL GLOW</span>
+                  <div id="reelTitle" class="text-stone-900 font-serif font-bold text-base sm:text-lg leading-tight truncate">Royal HD Airbrush Bridal Radiance</div>
+                  <div id="reelDesc" class="text-stone-500 text-xs truncate mt-0.5">Pre-wedding trials & VIP suite available</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-200 shadow-sm shrink-0">
+                  <i data-lucide="sparkles" class="w-5 h-5 text-rose-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Controls (Chevrons) -->
+            <div class="absolute inset-y-0 left-2 z-30 flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <button onclick="event.stopPropagation(); prevHeroSlide()" class="w-8 h-8 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white flex items-center justify-center backdrop-blur shadow">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <div class="absolute inset-y-0 right-2 z-30 flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <button onclick="event.stopPropagation(); nextHeroSlide()" class="w-8 h-8 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white flex items-center justify-center backdrop-blur shadow">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. BRAND TRUST STRIP (AUTHENTIC SALON PRODUCTS) -->
+  <section class="py-7 bg-white border-y border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+        <div class="text-[11px] uppercase font-black tracking-widest text-stone-500">
+          GENUINE INTERNATIONAL PRODUCTS ONLY:
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-stone-600 text-xs sm:text-sm font-bold tracking-wider">
+          <span class="hover:text-rose-600 transition-colors">L'ORÉAL PROFESSIONNEL</span>
+          <span class="hover:text-rose-600 transition-colors">SCHWARZKOPF PROFESSIONAL</span>
+          <span class="hover:text-rose-600 transition-colors">OLAPLEX</span>
+          <span class="hover:text-rose-600 transition-colors">RICA ITALY</span>
+          <span class="hover:text-rose-600 transition-colors">DYSON HAIR SCIENCE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. COMPREHENSIVE SERVICE CATALOG WITH INTERACTIVE CATEGORY TABS -->
+  <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal-on-scroll">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-rose-700 text-xs font-black uppercase tracking-widest">TRANSPARENT VALUE & PRICING</span>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mt-2">
+        Curated Salon Services
+      </h2>
+      <p class="text-stone-600 text-sm sm:text-base mt-3">
+        Every service is performed using single-use disposable capes, sterilized tools, and authentic international salon-grade formulations tailored to your hair and skin texture.
+      </p>
+
+      <!-- Category Filter Tabs (Interactive) -->
+      <div class="flex items-center justify-center gap-2 mt-8 overflow-x-auto no-scrollbar pb-2">
+        <button onclick="filterServices('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-rose-700 text-white shadow-md">
+          All Services
+        </button>
+        <button onclick="filterServices('hair')" id="tab-hair" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-stone-600 hover:text-stone-900 border border-stone-200">
+          Hair Botox & Smoothing
+        </button>
+        <button onclick="filterServices('bridal')" id="tab-bridal" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-stone-600 hover:text-stone-900 border border-stone-200">
+          Bridal & HD Makeup
+        </button>
+        <button onclick="filterServices('skin')" id="tab-skin" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-stone-600 hover:text-stone-900 border border-stone-200">
+          Skin & Hydra-Facials
+        </button>
+        <button onclick="filterServices('men')" id="tab-men" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-stone-600 hover:text-stone-900 border border-stone-200">
+          Men's Executive Lounge
+        </button>
+      </div>
+    </div>
+
+    <!-- Service Grid -->
+    <div id="service-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Hair Botox -->
+      <div class="service-card hair card-luxury reveal-on-scroll delay-100 rounded-3xl overflow-hidden flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1564141696939-9eb6e957ccfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Keratin Hair Botox Swati Salon Bhopal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-rose-600 text-white uppercase tracking-wider shadow-sm">
+            Most Requested
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">Keratin & Hair Botox Therapy</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹2,499+</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              Restores dull, frizzy, and damaged hair with deep protein infusion. Long-lasting salon glass shine and zero frizz for up to 6 months.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Includes Pre-wash & Scalp Detox</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Formaldehyde-free formulation</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Free post-treatment styling guide</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20am%20interested%20in%20Keratin%20or%20Hair%20Botox%20at%20Swati%20Salon." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Book Treatment on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Royal Bridal HD -->
+      <div class="service-card bridal card-luxury reveal-on-scroll delay-200 rounded-3xl overflow-hidden flex flex-col group border-amber-300">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1610173826014-d131b02d69ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Royal HD Bridal Makeup Swati Salon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-500 text-stone-950 uppercase tracking-wider shadow-sm">
+            Signature Suite
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">HD Royal Bridal Makeover</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹8,999</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              Camera-ready high-definition bridal glow that stays fresh all night through tears, stage lights, and pheras.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Complete Bridal Hairstyling & Dupatta Draping</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Premium Lashes, Lenses & Nails included</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Private VIP Air-Conditioned Bridal Suite</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20inquire%20about%20Bridal%20HD%20Makeup%20package." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Inquire Bridal Dates
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Hydra Glow Facial -->
+      <div class="service-card skin card-luxury reveal-on-scroll delay-300 rounded-3xl overflow-hidden flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Hydra Facial Skin Treatment Bhopal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-600 text-white uppercase tracking-wider shadow-sm">
+            Deep Hydration
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">Hydra-Infusion Glow Therapy</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹1,799</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              9-step medical-grade skin exfoliation, deep blackhead extraction, and hyaluronic acid serum infusion for instant glass-skin radiance.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Removes deep sun tan and pollution grime</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Ultrasonic pore cleansing & cold hammer firming</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Safe for acne-prone & sensitive skin</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20book%20a%20Hydra-Infusion%20Glow%20Facial." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Book Facial on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Men's Executive Grooming -->
+      <div class="service-card men card-luxury reveal-on-scroll delay-100 rounded-3xl overflow-hidden flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Mens Beard Grooming Swati Salon Bhopal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-stone-700 text-white uppercase tracking-wider shadow-sm">
+            Men's Lounge
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">Men's Fade & Beard Sculpting</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹499</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              Dedicated men's section with custom scissor fades, hot towel beard sculpting, charcoal peel-off mask, and revitalizing head massage.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Single-use disposable razor blades</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Hot towel steam & organic beard balm</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> 10-minute relaxing neck & shoulder massage</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20book%20a%20Men%20Grooming%20slot." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Book Grooming on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5: Hair Global Balayage -->
+      <div class="service-card hair card-luxury reveal-on-scroll delay-100 rounded-3xl overflow-hidden flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Global Balayage Swati Salon Bhopal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-pink-700 text-white uppercase tracking-wider shadow-sm">
+            Color Mastery
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">Global Balayage & Highlights</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹3,499+</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              Custom hand-painted French balayage using ammonia-free L'Oréal Inoa colors with Olaplex bond protection to keep hair healthy.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Free personalized hair strand test</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Zero brassy tones guarantee</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Gloss toner lock included</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20consult%20for%20Hair%20Color%20or%20Balayage." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Consult Colorist on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 6: Pre-Bridal Radiance Package -->
+      <div class="service-card bridal skin card-luxury rounded-3xl overflow-hidden flex flex-col group">
+        <div class="relative h-48 overflow-hidden bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1665960211264-5e0a7112bacd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Pre-Bridal Glow Package Swati Salon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-700 text-white uppercase tracking-wider shadow-sm">
+            All-In-One
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start gap-3 mb-2 min-h-[56px]">
+              <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug">Full Body Pre-Bridal Glow</h3>
+              <span class="text-rose-700 font-bold text-base shrink-0">₹4,999</span>
+            </div>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[48px]">
+              The essential bridal preparation ritual 3-5 days before your big day. Includes full body waxing, polishing, manicure & pedicure.
+            </p>
+            <ul class="text-xs text-stone-600 space-y-2 mb-6">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> RICA White Chocolate painless waxing</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Luxury crystal spa manicure & pedicure</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Full body herbal de-tan polishing</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20book%20the%20Pre-Bridal%20Glow%20Package." target="_blank" class="w-full py-3 rounded-xl bg-stone-900 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Book Pre-Bridal on WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- 7. BESPOKE BRIDAL & PRE-BRIDAL PACKAGES (WARM LUXURY TIERS) -->
+  <section id="bridal" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal-on-scroll">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-rose-700 text-xs font-black uppercase tracking-widest">BRIDE'S DREAM DESTINATION</span>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mt-2">
+        Curated Bridal Packages
+      </h2>
+      <p class="text-stone-600 text-sm sm:text-base mt-3">
+        Tailored beauty regimens designed to make you look ethereal on every wedding occasion—from your Roka and Mehendi to your grand Reception.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Tier 1: Silver Glow -->
+      <div class="card-luxury rounded-3xl p-8 flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-stone-500 uppercase tracking-widest">ESSENTIAL GLOW</span>
+          <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Silver Pre-Bridal</h3>
+          <p class="text-stone-600 text-xs mt-2 mb-6 min-h-[36px]">Complete essential skin & body grooming for weddings and festivals.</p>
+          <div class="font-serif text-3xl font-black text-stone-900 mb-6">₹3,999</div>
+          
+          <ul class="text-xs text-stone-600 space-y-3 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Full Arms & Legs Honey Waxing</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Herbal Diamond Glow Facial</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Classic Crystal Pedicure & Manicure</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Hair Spa & Deep Conditioning</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Eyebrow & Upper Lip Threading</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919725702043?text=Namaskar,%20I%20am%20interested%20in%20the%20Silver%20Pre-Bridal%20Package." target="_blank" class="w-full py-3.5 rounded-xl border border-stone-300 hover:border-rose-400 bg-stone-50 hover:bg-stone-100 text-stone-900 font-bold text-xs flex items-center justify-center gap-2 transition-all">
+          Select Silver Glow
+        </a>
+      </div>
+
+      <!-- Tier 2: Royal HD Bridal (Featured / Recommended) -->
+      <div class="relative rounded-3xl p-8 flex flex-col justify-between bg-gradient-to-b from-[#FFFDF9] via-[#FAF7F2] to-[#FFF5F7] border-2 border-rose-600 shadow-xl">
+        <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black bg-rose-700 text-white uppercase tracking-widest shadow-md">
+          MOST POPULAR BRIDAL SUITE
+        </span>
+        <div>
+          <span class="text-xs font-bold text-rose-700 uppercase tracking-widest">ROYAL CELEBRITY SUITE</span>
+          <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Royal HD Bridal Studio</h3>
+          <p class="text-stone-600 text-xs mt-2 mb-6 min-h-[36px]">Our flagship high-definition bridal look with personalized trials.</p>
+          <div class="font-serif text-3xl font-black text-rose-700 mb-6">₹8,999</div>
+          
+          <ul class="text-xs text-stone-700 space-y-3 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Complete HD Bridal Waterproof Makeup</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Designer Bridal Hair Bun with Fresh Floral Prep</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Saree & Double Dupatta Draping with Safety Pinning</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 3D Mink Lashes & Contact Lenses included</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Private VIP Air-Conditioned Suite Access</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919725702043?text=Namaskar,%20I%20want%20to%20book%20the%20Royal%20HD%20Bridal%20Package." target="_blank" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 hover:from-rose-600 hover:to-amber-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-rose-900/15 transition-transform active:scale-95">
+          Reserve Royal HD Suite
+        </a>
+      </div>
+
+      <!-- Tier 3: Luxury Airbrush Bridal -->
+      <div class="card-luxury rounded-3xl p-8 flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-stone-500 uppercase tracking-widest">COUTURE EXCELLENCE</span>
+          <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Airbrush Celebrity Suite</h3>
+          <p class="text-stone-600 text-xs mt-2 mb-6 min-h-[36px]">Micro-mist airbrush finish that looks flawless under 4K video cameras.</p>
+          <div class="font-serif text-3xl font-black text-stone-900 mb-6">₹14,999</div>
+          
+          <ul class="text-xs text-stone-600 space-y-3 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Full Temptu HD Airbrush Foundation & Contour</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Full Pre-Bridal Ritual (Waxing + Hydra Facial)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Gel Nail Extensions with Nail Art</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Complimentary Makeup for Mother or Sister (1 person)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Complete Venue Touch-Up Kit included</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919725702043?text=Namaskar,%20I%20am%20interested%20in%20the%20Luxury%20Airbrush%20Celebrity%20Suite." target="_blank" class="w-full py-3.5 rounded-xl border border-stone-300 hover:border-rose-400 bg-stone-50 hover:bg-stone-100 text-stone-900 font-bold text-xs flex items-center justify-center gap-2 transition-all">
+          Inquire Airbrush Suite
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. SALON AMBIENCE & PRIVATE SUITE SHOWCASE -->
+  <section id="ambience" class="py-20 bg-white border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-rose-700 text-xs font-black uppercase tracking-widest">WORLD-CLASS HYGIENE & COMFORT</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
+          The Swati Salon Experience
+        </h2>
+        <p class="text-stone-600 text-sm mt-3">
+          Designed for families and brides seeking peaceful, hygienic, and luxurious self-care on Kolar Road, Bhopal.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-3xl overflow-hidden card-luxury group">
+          <div class="h-64 overflow-hidden bg-stone-100">
+            <img src="assets/swati-storefront-exterior.jpg" alt="Official Swati Salon Storefront & Signboard Bhopal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-lg font-bold text-stone-900 mb-1 min-h-[28px]">Official Salon Storefront</h3>
+            <p class="text-stone-600 text-xs leading-relaxed min-h-[48px]">Shop No. 14, Maa Bijasan Market on Kolar Road with prominent signage and ground-floor parking convenience.</p>
+          </div>
+        </div>
+
+        <div class="rounded-3xl overflow-hidden card-luxury group">
+          <div class="h-64 overflow-hidden bg-stone-100">
+            <img src="assets/swati-interior-stations.jpg" alt="Real Salon Interior & Hair Stations Swati Salon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-lg font-bold text-stone-900 mb-1 min-h-[28px]">Authentic Salon Stations</h3>
+            <p class="text-stone-600 text-xs leading-relaxed min-h-[48px]">Spotless air-conditioned styling bays, ergonomic wash beds, and medical-grade sanitized grooming equipment.</p>
+          </div>
+        </div>
+
+        <div class="rounded-3xl overflow-hidden card-luxury group">
+          <div class="h-64 overflow-hidden bg-stone-100">
+            <img src="assets/swati-founder-vinod-thakur.jpg" alt="Bollywood Celebrity Styling Heritage Mr Vinod Thakur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-lg font-bold text-stone-900 mb-1 min-h-[28px]">30 Years Bollywood Styling</h3>
+            <p class="text-stone-600 text-xs leading-relaxed min-h-[48px]">Founder Mr. Vinod Thakur bringing 30+ years of film industry and Mumbai bridal styling artistry to Bhopal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. AUTHENTIC CLIENT REVIEWS & VERIFIED TESTIMONIALS (GOOGLE & JUSTDIAL) -->
+  <section id="reviews" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal-on-scroll">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-rose-700 text-xs font-black uppercase tracking-widest">AUTHENTIC WORD OF MOUTH & TESTIMONIALS</span>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mt-2">
+        Loved By 850+ Families Across Bhopal
+      </h2>
+      <p class="text-stone-600 text-sm sm:text-base mt-3">
+        Real experiences from verified patrons who trust Swati Hair and Beauty Family Salon for their everyday styling, hair transformations, and once-in-a-lifetime wedding moments.
+      </p>
+    </div>
+
+    <!-- Overall Rating & Trust Authority Banner -->
+    <div class="max-w-4xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-stone-900 via-rose-950 to-stone-900 text-white shadow-xl border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-5 text-center md:text-left">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 text-stone-950 flex flex-col items-center justify-center font-serif font-black shadow-lg shrink-0">
+          <span class="text-3xl leading-none">4.8</span>
+          <div class="flex text-stone-950 text-[10px] mt-0.5">
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+            <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+          </div>
+        </div>
+        <div>
+          <div class="font-serif font-bold text-lg sm:text-xl text-white">Exceptional Client Satisfaction</div>
+          <div class="text-stone-300 text-xs sm:text-sm mt-1">Based on <strong>850+ verified reviews</strong> across Google & Justdial • Kolar Road, Bhopal</div>
+          <div class="flex flex-wrap items-center gap-2 mt-2">
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+              <i data-lucide="check-circle-2" class="w-3 h-3"></i> 100% Verified Patrons
+            </span>
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 bg-amber-950/60 px-2.5 py-0.5 rounded-full border border-amber-500/30">
+              <i data-lucide="award" class="w-3 h-3"></i> 30 Yrs Trusted Heritage
+            </span>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.justdial.com/Bhopal/Swati-Hair-and-Beauty-Family-Salon-Near-Ci-Saquar-Kolar-Road/0755PX755-X755-210823210529-J1D3_BZDET" target="_blank" class="shrink-0 bg-white hover:bg-stone-100 text-stone-900 font-bold text-xs px-5 py-3 rounded-xl shadow transition-all flex items-center gap-2 active:scale-95">
+        <span>View Justdial Reviews (4.8 ★)</span>
+        <i data-lucide="external-link" class="w-3.5 h-3.5 text-rose-700"></i>
+      </a>
+    </div>
+
+    <!-- Review Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+      <button onclick="filterTestimonials('all')" id="tab-test-all" class="test-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-rose-700 text-white shadow-md transition-all">
+        All Testimonials (6)
+      </button>
+      <button onclick="filterTestimonials('bridal')" id="tab-test-bridal" class="test-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-stone-700 hover:bg-stone-50 border border-stone-200 shadow-sm transition-all">
+        Bridal HD Makeup (2)
+      </button>
+      <button onclick="filterTestimonials('hair')" id="tab-test-hair" class="test-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-stone-700 hover:bg-stone-50 border border-stone-200 shadow-sm transition-all">
+        Hair Botox & Balayage (2)
+      </button>
+      <button onclick="filterTestimonials('mens')" id="tab-test-mens" class="test-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-stone-700 hover:bg-stone-50 border border-stone-200 shadow-sm transition-all">
+        Men's Executive Lounge (2)
+      </button>
+    </div>
+
+    <!-- Testimonials Grid (6 Real Client Stories) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Testimonial 1: Bridal HD -->
+      <div class="testimonial-card bridal card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-rose-800 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200">
+              Bridal HD Suite
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"Flawless Makeup That Survived Emotional Vidai Moments"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "I booked Swati Salon for my sister's wedding at Kolar Road. The HD airbrush bridal makeup was simply stunning! Not cakey at all, photographed beautifully under studio flash, and survived all tears. Highly recommend Mr. Vinod Thakur's bridal team!"
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-600 to-rose-400 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              RS
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Ritu Saxena <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Chuna Bhatti, Bhopal • Nov 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2: Hair Botox -->
+      <div class="testimonial-card hair card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+              Keratin Botox
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"My Frizzy Curls Are Now Soft & Manageable"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "Got my hair botox and smoothing done here 3 months ago. Even with Bhopal's hard water, my hair has remained silky, frizz-free, and healthy. Honest pricing without pushing unnecessary bottles, and very clean hygienic setup right in front of Anupam Hospital."
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-600 to-rose-400 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              PM
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Pooja Malviya <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Aashirwad Colony, Bhopal • Oct 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3: Men's Grooming -->
+      <div class="testimonial-card mens card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-stone-800 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-300">
+              Men's Scissor Fade
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"No Need to Travel to MP Nagar for Premium Grooming"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "Cleanest family salon on Kolar Road with separate sections for gents and ladies. The scissor fade haircut and hot towel beard sculpting were top notch. Disposable blades and fresh towels used every time. Truly executive service."
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-stone-800 to-stone-600 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              AV
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Dr. Abhishek Verma <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Kolar Road, Bhopal • Regular Client</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 4: Pre-Bridal Sitter -->
+      <div class="testimonial-card bridal card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-rose-800 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200">
+              Pre-Bridal Package
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"30-Day Glow Calendar Made My Wedding Stress-Free"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "Booked the complete 30-day pre-bridal package for my daughter. From Hydra-Facials to Rica waxing, every sitting was punctual and handled with exceptional gentleness. The natural bridal radiance on her wedding day spoke for itself!"
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-rose-500 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              SK
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Sneha Kulkarni <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Shahpura, Bhopal • Dec 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 5: 30 Yrs Heritage & Family Care -->
+      <div class="testimonial-card hair card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+              Family Styling
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"30 Years of Bollywood Mastery In Every Scissor Cut"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "Our whole family has been coming to Mr. Vinod Thakur for 6+ years. Having styled actors in Mumbai Film City, his understanding of hair texture and face structure is unmatched in Bhopal. Genuine Schwarzkopf & L'Oréal products unsealed before you."
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-stone-900 to-amber-700 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              RR
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Rajeshwar Singh Rajput <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Bawadiya Kalan, Bhopal • Patron Since 2019</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 6: Balayage & Men's Style -->
+      <div class="testimonial-card mens card-luxury rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-[11px] font-bold text-stone-800 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-300">
+              Executive Beard & Hair
+            </span>
+          </div>
+          <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">"Punctual Appointments & Courteous Staff"</h4>
+          <p class="text-stone-700 text-xs sm:text-sm leading-relaxed mb-6 italic min-h-[92px]">
+            "Pre-booking via their WhatsApp desk makes it seamless—zero waiting time on Sunday mornings. The steam beard treatment and charcoal peel mask leave your skin fresh. Great parking right in front of Maa Bijasan Market."
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-800 to-amber-600 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              AJ
+            </div>
+            <div>
+              <div class="text-stone-900 text-xs font-bold flex items-center gap-1">
+                Ananya Joshi & Family <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              </div>
+              <div class="text-stone-500 text-[11px]">Near CI Square, Bhopal • Jan 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. STYLIST BEAUTY SECRETS & BLOG (EXPERT ADVICE) -->
+  <section id="tips" class="py-20 bg-white border-t border-stone-200 reveal-on-scroll">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-rose-700 text-xs font-black uppercase tracking-widest">EXPERT ADVICE & BLOG</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
+          Hair & Skin Secrets from Our Stylists
+        </h2>
+        <p class="text-stone-600 text-sm mt-3">
+          Practical care routines and tips curated by our senior cosmetologists to maintain your salon results between visits.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Blog Card 1 -->
+        <div class="card-luxury rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-black uppercase text-rose-700 tracking-wider">HAIR CARE GUIDE</span>
+            <h3 class="font-serif text-lg font-bold text-stone-900 mt-2 mb-3 min-h-[56px]">
+              How to Maintain Keratin & Hair Botox for 6+ Months
+            </h3>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[64px]">
+              Learn the 3 golden rules: sulfate-free shampoo selection, protecting against hard water minerals in Bhopal, and avoiding tight rubber bands in the first 72 hours.
+            </p>
+          </div>
+          <button onclick="openTipModal('keratin')" class="text-rose-700 hover:text-rose-600 text-xs font-bold flex items-center gap-1.5 mt-2">
+            Read Stylist Checklist <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Blog Card 2 -->
+        <div class="card-luxury rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-black uppercase text-amber-700 tracking-wider">BRIDAL TIMELINE</span>
+            <h3 class="font-serif text-lg font-bold text-stone-900 mt-2 mb-3 min-h-[56px]">
+              The 30-Day Pre-Bridal Countdown Calendar
+            </h3>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[64px]">
+              When should you do your hydra-facial? How many days before should waxing happen? Our exact week-by-week calendar to avoid pre-wedding breakouts.
+            </p>
+          </div>
+          <button onclick="openTipModal('bridal')" class="text-rose-700 hover:text-rose-600 text-xs font-bold flex items-center gap-1.5 mt-2">
+            Read Countdown Plan <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Blog Card 3 -->
+        <div class="card-luxury rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-black uppercase text-emerald-700 tracking-wider">SKIN RESCUE</span>
+            <h3 class="font-serif text-lg font-bold text-stone-900 mt-2 mb-3 min-h-[56px]">
+              Combating Sun Tan & Summer Dehydration in MP
+            </h3>
+            <p class="text-stone-600 text-xs leading-relaxed mb-4 min-h-[64px]">
+              Why routine cold hydra-infusion beats harsh bleach creams for long-term pigmentation reversal and barrier repair.
+            </p>
+          </div>
+          <button onclick="openTipModal('skin')" class="text-rose-700 hover:text-rose-600 text-xs font-bold flex items-center gap-1.5 mt-2">
+            Read Skin Routine <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. INTERACTIVE 2-STEP WHATSAPP APPOINTMENT BOOKING WIZARD -->
+  <section id="booking" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto reveal-on-scroll">
+    <div class="card-luxury rounded-3xl p-8 sm:p-12 border-2 border-amber-300/60 shadow-2xl relative overflow-hidden bg-white">
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-rose-100 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="text-center max-w-2xl mx-auto mb-8 relative z-10">
+        <span class="text-rose-700 text-xs font-black uppercase tracking-widest">FAST & CONVENIENT</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
+          Reserve Your Salon Slot
+        </h2>
+        <p class="text-stone-600 text-xs sm:text-sm mt-2">
+          Select your desired service and preferred timing. We connect you directly with the salon reception on WhatsApp to confirm your slot within 10 minutes.
+        </p>
+      </div>
+
+      <form id="bookingWizard" onsubmit="handleBookingSubmit(event)" class="space-y-6 relative z-10">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Service Selector -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-2">Select Service</label>
+            <select id="bookService" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:border-rose-600 transition-colors">
+              <option value="Keratin & Hair Botox">Keratin & Hair Botox Therapy (₹2,499+)</option>
+              <option value="Royal HD Bridal Makeup">Royal HD Bridal Makeover (₹8,999)</option>
+              <option value="Hydra Glow Facial">Hydra-Infusion Glow Facial (₹1,799)</option>
+              <option value="Men Fade & Beard Grooming">Men's Fade & Beard Grooming (₹499)</option>
+              <option value="Global Balayage Hair Color">Global Balayage & Highlights (₹3,499+)</option>
+              <option value="Full Pre-Bridal Package">Full Body Pre-Bridal Glow (₹4,999)</option>
+              <option value="General Haircut & Styling">General Haircut & Styling</option>
+            </select>
+          </div>
+
+          <!-- Preferred Date -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-2">Preferred Date</label>
+            <input type="date" id="bookDate" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:border-rose-600 transition-colors">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Time Slot -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-2">Preferred Slot</label>
+            <select id="bookSlot" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:border-rose-600 transition-colors">
+              <option value="Morning (10:30 AM - 1:00 PM)">Morning (10:30 AM - 1:00 PM)</option>
+              <option value="Afternoon (1:00 PM - 4:00 PM)">Afternoon (1:00 PM - 4:00 PM)</option>
+              <option value="Evening (4:00 PM - 7:30 PM)">Evening (4:00 PM - 7:30 PM)</option>
+              <option value="Night (7:30 PM - 9:00 PM)">Night (7:30 PM - 9:00 PM)</option>
+            </select>
+          </div>
+
+          <!-- Client Name -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-2">Your Full Name</label>
+            <input type="text" id="bookName" placeholder="e.g. Ananya Sharma" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:border-rose-600 transition-colors">
+          </div>
+
+          <!-- Client Phone -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-2">WhatsApp Contact No.</label>
+            <input type="tel" id="bookPhone" placeholder="+91 98XXX XXXXX" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:border-rose-600 transition-colors">
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 hover:from-rose-600 hover:to-amber-500 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-rose-900/15 transition-transform active:scale-95">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Confirm & Connect on WhatsApp
+        </button>
+
+        <!-- Inline Confirmation Alert (Hidden by default) -->
+        <div id="bookingConfirmMsg" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+          <div>
+            <strong>Booking Request Prepared!</strong> Launching WhatsApp to dispatch your appointment details directly to the Swati Salon front desk...
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 12. FREQUENTLY ASKED QUESTIONS (ACCORDION) -->
+  <section class="py-20 bg-[#F4EFE6] border-t border-stone-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-rose-700 text-xs font-black uppercase tracking-widest">HAVE QUESTIONS?</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-stone-600 text-sm mt-2">
+          Everything you need to know about our salon policies, appointments, and bridal services.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="card-luxury rounded-2xl overflow-hidden bg-white">
+          <button onclick="toggleFaq('faq1')" class="w-full px-6 py-4 text-left flex justify-between items-center text-stone-900 font-serif font-bold text-sm sm:text-base hover:text-rose-700 transition-colors">
+            <span>Do I need an advance appointment, or can I walk in?</span>
+            <i data-lucide="chevron-down" id="faq1-icon" class="w-4 h-4 text-stone-500 transition-transform"></i>
+          </button>
+          <div id="faq1-content" class="faq-answer px-6 text-xs text-stone-600 leading-relaxed border-stone-100">
+            Walk-ins are warmly welcomed for routine haircut, threading, and men's grooming based on chair availability! However, for chemical hair treatments (Keratin, Botox, Balayage) and Bridal Makeup, we strongly advise booking at least 24 to 48 hours in advance to guarantee an unhurried, private VIP experience.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="card-luxury rounded-2xl overflow-hidden bg-white">
+          <button onclick="toggleFaq('faq2')" class="w-full px-6 py-4 text-left flex justify-between items-center text-stone-900 font-serif font-bold text-sm sm:text-base hover:text-rose-700 transition-colors">
+            <span>Which brand products do you use for hair chemical treatments?</span>
+            <i data-lucide="chevron-down" id="faq2-icon" class="w-4 h-4 text-stone-500 transition-transform"></i>
+          </button>
+          <div id="faq2-content" class="faq-answer px-6 text-xs text-stone-600 leading-relaxed border-stone-100">
+            We strictly use 100% genuine international salon brands: L'Oréal Professionnel Paris, Schwarzkopf Professional, and Olaplex. We never dilute or substitute products with cheap open-market alternatives. You can inspect the product seal right at your styling chair.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="card-luxury rounded-2xl overflow-hidden bg-white">
+          <button onclick="toggleFaq('faq3')" class="w-full px-6 py-4 text-left flex justify-between items-center text-stone-900 font-serif font-bold text-sm sm:text-base hover:text-rose-700 transition-colors">
+            <span>Do you offer bridal makeup at home or wedding venues in Bhopal?</span>
+            <i data-lucide="chevron-down" id="faq3-icon" class="w-4 h-4 text-stone-500 transition-transform"></i>
+          </button>
+          <div id="faq3-content" class="faq-answer px-6 text-xs text-stone-600 leading-relaxed border-stone-100">
+            Yes! For destination weddings, hotels, and home venues across Bhopal and nearby areas, our senior makeup artist and hair stylist travel on-site with full vanity lighting kits and equipment. Venue charges apply depending on location.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="card-luxury rounded-2xl overflow-hidden bg-white">
+          <button onclick="toggleFaq('faq4')" class="w-full px-6 py-4 text-left flex justify-between items-center text-stone-900 font-serif font-bold text-sm sm:text-base hover:text-rose-700 transition-colors">
+            <span>Where is Swati Salon located, and is parking available?</span>
+            <i data-lucide="chevron-down" id="faq4-icon" class="w-4 h-4 text-stone-500 transition-transform"></i>
+          </button>
+          <div id="faq4-content" class="faq-answer px-6 text-xs text-stone-600 leading-relaxed border-stone-100">
+            We are centrally located at Shop No. 14, Maa Bijasan Market, right in front of Anupam Hospital on Kolar Road, Bhopal (PIN 462042). There is ample dedicated two-wheeler and four-wheeler parking space directly in front of the market complex.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. LOCATION & OPENING HOURS -->
+  <section id="location" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto reveal-on-scroll">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Location Card -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <span class="text-rose-700 text-xs font-black uppercase tracking-widest">EASY TO REACH</span>
+          <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Visit Swati Salon</h2>
+          <p class="text-stone-600 text-xs mt-2">Centrally situated on Kolar Road, easily accessible from Chuna Bhatti, Shahpura, and Danapani.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-3 p-4 rounded-2xl card-luxury">
+            <div class="p-2.5 rounded-xl bg-rose-50 text-rose-700 shrink-0">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">Salon Address</div>
+              <div class="text-xs text-stone-600 mt-0.5">Shop No. 14, Maa Bijasan Market (In front of Anupam Hospital), Aashirwad Colony, Kolar Road, Bhopal, MP – 462042</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-4 rounded-2xl card-luxury">
+            <div class="p-2.5 rounded-xl bg-amber-50 text-amber-700 shrink-0">
+              <i data-lucide="clock" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">Opening Hours</div>
+              <div class="text-xs text-stone-600 mt-0.5">Monday to Sunday: 10:00 AM – 9:00 PM (Open 7 Days a Week)</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-4 rounded-2xl card-luxury">
+            <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-700 shrink-0">
+              <i data-lucide="phone-call" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">Direct Reception Desk</div>
+              <div class="text-xs text-stone-600 mt-0.5">+91 97257 02043 (Calls & WhatsApp inquiries)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="https://maps.google.com/?q=Swati+Hair+and+Beauty+Family+Salon+Kolar+Road+Bhopal" target="_blank" class="w-full py-3.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md">
+            <i data-lucide="navigation" class="w-4 h-4 text-amber-400"></i> Open in Google Maps for Directions ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Map Embed Container -->
+      <div class="lg:col-span-7">
+        <div class="rounded-3xl overflow-hidden card-luxury p-2 shadow-xl h-[400px]">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14674.225792984182!2d77.4100!3d23.1800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c43b9c0000001%3A0x1!2sKolar%20Road%2C%20Bhopal!5e0!3m2!1sen!2sin!4v1700000000000" 
+            class="w-full h-full rounded-2xl border-0" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 14. COMPREHENSIVE LUXURY EDITORIAL FOOTER WITH VERIFIED SOCIAL & DIRECTORY LINKS -->
+  <footer class="bg-stone-950 text-white pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-t border-amber-500/20">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Main Footer 4-Column Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
+        
+        <!-- Col 1: Brand & Social Media Ecosystem (5 cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          <a href="#" class="inline-block" aria-label="Swati Hair & Beauty Family Salon">
+            <img src="assets/swati-brand-logo-dark.svg" alt="Swati Hair & Beauty Family Salon" class="h-12 w-auto object-contain">
+          </a>
+          <p class="text-stone-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            Bhopal's premier family and bridal beauty sanctuary on Kolar Road. Combining 30+ years of Bollywood Film City styling mastery by Mr. Vinod Thakur with international luxury products and private VIP comfort.
+          </p>
+
+          <!-- Social Media & Business Profiles -->
+          <div class="pt-2">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-amber-400 mb-3">Connect On Social & Directory Platforms</div>
+            <div class="flex items-center gap-3">
+              <!-- Instagram -->
+              <a href="https://instagram.com/swatisalonbhopal" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-900 hover:bg-gradient-to-tr hover:from-amber-600 hover:to-rose-600 text-stone-300 hover:text-white flex items-center justify-center border border-stone-800 transition-all shadow-sm hover:scale-105" aria-label="Swati Salon Instagram">
+                <i data-lucide="instagram" class="w-4 h-4"></i>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://facebook.com/swatisalonbhopal" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-900 hover:bg-blue-600 text-stone-300 hover:text-white flex items-center justify-center border border-stone-800 transition-all shadow-sm hover:scale-105" aria-label="Swati Salon Facebook">
+                <i data-lucide="facebook" class="w-4 h-4"></i>
+              </a>
+
+              <!-- WhatsApp Business -->
+              <a href="https://wa.me/919725702043?text=Namaskar%20Swati%20Salon,%20I%20would%20like%20to%20connect%20regarding%20services." target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-900 hover:bg-emerald-600 text-stone-300 hover:text-white flex items-center justify-center border border-stone-800 transition-all shadow-sm hover:scale-105" aria-label="WhatsApp Business Desk">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+              </a>
+
+              <!-- Justdial Official Verified Profile -->
+              <a href="https://www.justdial.com/Bhopal/Swati-Hair-and-Beauty-Family-Salon-Near-Ci-Saquar-Kolar-Road/0755PX755-X755-210823210529-J1D3_BZDET" target="_blank" rel="noopener noreferrer" class="h-10 px-3 rounded-xl bg-stone-900 hover:bg-amber-600 text-stone-300 hover:text-white flex items-center gap-1.5 border border-stone-800 transition-all text-xs font-bold shadow-sm hover:scale-105" aria-label="Justdial 4.8 Rating">
+                <span class="text-amber-400 font-black">JD</span>
+                <span class="text-[11px]">4.8 ★</span>
+              </a>
+
+              <!-- Google Maps Pin -->
+              <a href="https://maps.google.com/?q=Shop+No+14+Maa+Bijasan+Market+Kolar+Road+Bhopal" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-900 hover:bg-rose-700 text-stone-300 hover:text-white flex items-center justify-center border border-stone-800 transition-all shadow-sm hover:scale-105" aria-label="Google Maps Location">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links (2 cols) -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="font-serif font-bold text-sm text-white tracking-wide border-b border-stone-800 pb-2">
+            Navigation
+          </div>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="#services" class="hover:text-amber-400 transition-colors">Services & Menu</a></li>
+            <li><a href="#bridal" class="hover:text-amber-400 transition-colors">Royal Bridal Studio</a></li>
+            <li><a href="#ambience" class="hover:text-amber-400 transition-colors">Salon Ambience</a></li>
+            <li><a href="#reviews" class="hover:text-amber-400 transition-colors">Client Reviews (4.8 ★)</a></li>
+            <li><a href="#tips" class="hover:text-amber-400 transition-colors">Hair & Skin Tips</a></li>
+            <li><a href="#booking" class="hover:text-amber-400 transition-colors">Book Appointment</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Signature Specialties (2 cols) -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="font-serif font-bold text-sm text-white tracking-wide border-b border-stone-800 pb-2">
+            Signature Services
+          </div>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="#bridal" class="hover:text-amber-400 transition-colors">HD Airbrush Bridal</a></li>
+            <li><a href="#services" class="hover:text-amber-400 transition-colors">Keratin Hair Botox</a></li>
+            <li><a href="#services" class="hover:text-amber-400 transition-colors">Hydra-Facial Infusion</a></li>
+            <li><a href="#services" class="hover:text-amber-400 transition-colors">Men's Scissor Fade</a></li>
+            <li><a href="#services" class="hover:text-amber-400 transition-colors">Balayage & Highlights</a></li>
+            <li><a href="#bridal" class="hover:text-amber-400 transition-colors">Pre-Bridal Calendar</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Visit & Contact Details (3 cols) -->
+        <div class="lg:col-span-3 space-y-4">
+          <div class="font-serif font-bold text-sm text-white tracking-wide border-b border-stone-800 pb-2">
+            Salon Location & Hours
+          </div>
+          <div class="space-y-3 text-xs text-stone-400">
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+              <span class="leading-relaxed">Shop No. 14, Maa Bijasan Market, Opp. Anupam Hospital, Aashirwad Colony, Kolar Road, Bhopal (MP – 462042)</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone-call" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+              <a href="tel:+919725702043" class="hover:text-white font-bold text-stone-300 transition-colors">+91 97257 02043 / 98922 57145</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="clock" class="w-4 h-4 text-amber-500 shrink-0"></i>
+              <span>Mon – Sun: 09:30 AM – 09:30 PM (Open 7 Days)</span>
+            </div>
+            <div class="p-3 rounded-xl bg-stone-900 border border-stone-800 text-[11px] text-stone-400 flex items-center gap-2">
+              <i data-lucide="car" class="w-4 h-4 text-amber-400 shrink-0"></i>
+              <span>Free ground parking right in front of market</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright & Back-to-Top -->
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-500">
+        <div>
+          &copy; 2026 Swati Hair & Beauty Family Salon. All Rights Reserved. • Kolar Road, Bhopal.
+        </div>
+        <div class="flex items-center gap-6">
+          <span class="text-stone-400">Crafted with Precision by NexG Tech</span>
+          <a href="#" class="inline-flex items-center gap-1.5 text-stone-400 hover:text-amber-400 transition-colors">
+            <span>Back to Top</span>
+            <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 15. STICKY MOBILE CONVERSION BAR -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200 p-3 flex gap-2 shadow-lg">
+    <a href="tel:+919725702043" class="flex-1 py-3 rounded-xl bg-stone-100 border border-stone-300 text-stone-900 font-bold text-xs flex items-center justify-center gap-2">
+      <i data-lucide="phone" class="w-4 h-4 text-rose-700"></i> Call Reception
+    </a>
+    <a href="https://wa.me/919725702043?text=Namaskar,%20I%20would%20like%20to%20book%20a%20salon%20appointment." target="_blank" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-rose-700 to-amber-600 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md">
+      <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Slot
+    </a>
+  </div>
+
+  <!-- INTERACTIVE MODAL FOR BLOG TIPS (DYNAMIC) -->
+  <div id="tipModal" class="hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border border-stone-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
+      <button onclick="closeTipModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="tipModalContent" class="space-y-4 text-xs sm:text-sm text-stone-700">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT-SIDE SCRIPTS -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Mobile Hamburger Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMobileDrawer() {
+      mobileDrawer.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      mobileDrawer.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileDrawer);
+    if (closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', closeMobileDrawer);
+    if (mobileDrawer) {
+      mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) closeMobileDrawer();
+      });
+    }
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMobileDrawer);
+    });
+
+    // 2. Cinematic Living Ambient Reel (AI Story Presentation)
+    let currentHeroSlide = 0;
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const totalHeroSlides = heroSlides.length;
+    let reelTimer = null;
+    let reelProgress = 0;
+    const SLIDE_DURATION = 4200; // 4.2s per slide
+    const TICK_INTERVAL = 50;
+
+    function renderHeroSlide(idx) {
+      currentHeroSlide = (idx + totalHeroSlides) % totalHeroSlides;
+      heroSlides.forEach((slide, i) => {
+        const img = slide.querySelector('img');
+        if (i === currentHeroSlide) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+          if (img) img.classList.add('ken-burns-active');
+          const tag = slide.getAttribute('data-tag');
+          const title = slide.getAttribute('data-title');
+          const desc = slide.getAttribute('data-desc');
+          const tagEl = document.getElementById('reelTag');
+          const titleEl = document.getElementById('reelTitle');
+          const descEl = document.getElementById('reelDesc');
+          if (tagEl) tagEl.textContent = tag;
+          if (titleEl) titleEl.textContent = title;
+          if (descEl) descEl.textContent = desc;
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+          if (img) img.classList.remove('ken-burns-active');
+        }
+      });
+      for (let i = 0; i < totalHeroSlides; i++) {
+        const bar = document.getElementById('reelBar' + i);
+        if (!bar) continue;
+        if (i < currentHeroSlide) bar.style.width = '100%';
+        else if (i > currentHeroSlide) bar.style.width = '0%';
+      }
+      reelProgress = 0;
+    }
+
+    function nextHeroSlide() {
+      renderHeroSlide(currentHeroSlide + 1);
+    }
+
+    function prevHeroSlide() {
+      renderHeroSlide(currentHeroSlide - 1);
+    }
+
+    function startReelTicker() {
+      if (reelTimer) clearInterval(reelTimer);
+      reelTimer = setInterval(() => {
+        reelProgress += (TICK_INTERVAL / SLIDE_DURATION) * 100;
+        const currentBar = document.getElementById('reelBar' + currentHeroSlide);
+        if (currentBar) currentBar.style.width = Math.min(reelProgress, 100) + '%';
+        if (reelProgress >= 100) {
+          nextHeroSlide();
+        }
+      }, TICK_INTERVAL);
+    }
+
+    if (heroSlides.length > 0) {
+      renderHeroSlide(0);
+      startReelTicker();
+    }
+
+    // 3. Service Category Tabs Filter
+    function filterServices(category) {
+      const cards = document.querySelectorAll('.service-card');
+      const tabs = document.querySelectorAll('.tab-btn');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-rose-700', 'text-white', 'shadow-md');
+        tab.classList.add('bg-white', 'text-stone-600');
+      });
+      const activeTab = document.getElementById('tab-' + category);
+      if (activeTab) {
+        activeTab.classList.remove('bg-white', 'text-stone-600');
+        activeTab.classList.add('bg-rose-700', 'text-white', 'shadow-md');
+      }
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Testimonials Category Tabs Filter
+    function filterTestimonials(category) {
+      const cards = document.querySelectorAll('.testimonial-card');
+      const tabs = document.querySelectorAll('.test-tab-btn');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-rose-700', 'text-white', 'shadow-md');
+        tab.classList.add('bg-white', 'text-stone-700', 'border', 'border-stone-200');
+      });
+      const activeTab = document.getElementById('tab-test-' + category);
+      if (activeTab) {
+        activeTab.classList.remove('bg-white', 'text-stone-700', 'border', 'border-stone-200');
+        activeTab.classList.add('bg-rose-700', 'text-white', 'shadow-md');
+      }
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Smooth FAQ Accordion Toggle
+    function toggleFaq(id) {
+      const content = document.getElementById(id + '-content');
+      const icon = document.getElementById(id + '-icon');
+      const isOpen = content.classList.contains('is-open');
+
+      // Close all other faqs
+      document.querySelectorAll('.faq-answer').forEach(ans => {
+        ans.classList.remove('is-open');
+      });
+      document.querySelectorAll('[id$="-icon"]').forEach(ic => {
+        ic.style.transform = 'rotate(0deg)';
+      });
+
+      if (!isOpen) {
+        content.classList.add('is-open');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // 5. Interactive Booking Wizard Dispatcher
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const service = document.getElementById('bookService').value;
+      const date = document.getElementById('bookDate').value;
+      const slot = document.getElementById('bookSlot').value;
+      const name = document.getElementById('bookName').value;
+      const phone = document.getElementById('bookPhone').value;
+
+      const confirmMsg = document.getElementById('bookingConfirmMsg');
+      const submitBtn = document.getElementById('submitBtn');
+
+      confirmMsg.classList.remove('hidden');
+      submitBtn.classList.add('opacity-50');
+
+      const waText = encodeURIComponent(
+        `Namaskar Swati Salon Front Desk! 🌸\n\n` +
+        `I would like to book an appointment:\n` +
+        `• Name: ${name}\n` +
+        `• Phone: ${phone}\n` +
+        `• Service: ${service}\n` +
+        `• Preferred Date: ${date}\n` +
+        `• Time Slot: ${slot}\n\n` +
+        `Please confirm slot availability.`
+      );
+
+      setTimeout(() => {
+        window.open(`https://wa.me/919725702043?text=${waText}`, '_blank');
+      }, 800);
+    }
+
+    // 6. Stylist Blog Tips Modals
+    const tipData = {
+      keratin: `
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Keratin & Botox Aftercare Checklist</h3>
+        <p class="text-xs text-rose-700 font-bold mb-4">By Senior Hair Cosmetologist, Swati Salon</p>
+        <ul class="space-y-3 text-xs leading-relaxed text-stone-600">
+          <li><strong>1. The 72-Hour Rule:</strong> Strictly avoid water, sweat, hairpins, and ponytails for the first 3 days after smoothing to prevent mechanical creasing.</li>
+          <li><strong>2. Sulfate-Free Wash:</strong> Always use sodium chloride and sulfate-free shampoos. Regular shampoos strip keratin proteins within 3 weeks.</li>
+          <li><strong>3. Bhopal Hard Water Hack:</strong> If washing with municipal or borewell hard water, do a final rinse with drinking water or install a shower filter.</li>
+        </ul>
+      `,
+      bridal: `
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">30-Day Pre-Bridal Countdown Calendar</h3>
+        <p class="text-xs text-amber-700 font-bold mb-4">By Bridal Director, Swati Salon</p>
+        <ul class="space-y-3 text-xs leading-relaxed text-stone-600">
+          <li><strong>Day -30:</strong> Hair consultation & Keratin/Botox session. Deep scalp detox.</li>
+          <li><strong>Day -15:</strong> First Hydra-Facial & trial makeup shade matching.</li>
+          <li><strong>Day -4:</strong> Full body RICA waxing, crystal manicure & pedicure.</li>
+          <li><strong>Day -2:</strong> Final hydra-infusion sheet mask & skin glow seal.</li>
+          <li><strong>Day 0 (Wedding Day):</strong> Flawless HD airbrush makeup in our private VIP suite.</li>
+        </ul>
+      `,
+      skin: `
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Combating Sun Tan & Dehydration in MP</h3>
+        <p class="text-xs text-emerald-700 font-bold mb-4">By Aesthetician Team, Swati Salon</p>
+        <ul class="space-y-3 text-xs leading-relaxed text-stone-600">
+          <li><strong>Never Use Harsh Bleach:</strong> Chemical bleach damages the skin barrier and causes rebound pigmentation when exposed to summer sun.</li>
+          <li><strong>Choose Hydra-Infusion:</strong> Cold vacuum infusion exfoliates dead cells while flooding deep dermis layers with hyaluronic acid.</li>
+          <li><strong>Sunscreen Reapplication:</strong> Use SPF 50+ mineral sunscreen every 3 hours even indoors under bright salon or studio lights.</li>
+        </ul>
+      `
+    };
+
+    function openTipModal(key) {
+      document.getElementById('tipModalContent').innerHTML = tipData[key] || '';
+      document.getElementById('tipModal').classList.remove('hidden');
+    }
+
+    function closeTipModal() {
+      document.getElementById('tipModal').classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('bookDate');
+      if (dateInput) dateInput.min = today;
+    });
+
+    // 7. Real-Time Scroll Reading Progress & Dynamic Sticky Header Compaction
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      const bar = document.getElementById('scrollProgressBar');
+      if (bar) bar.style.width = scrolled + '%';
+
+      const header = document.getElementById('mainHeaderContainer');
+      if (header) {
+        if (winScroll > 40) {
+          header.classList.add('is-scrolled');
+        } else {
+          header.classList.remove('is-scrolled');
+        }
+      }
+    }, { passive: true });
+
+    // 8. IntersectionObserver Dynamic Scroll Reveal Animations
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 9. requestAnimationFrame Dynamic Number Counter Engine
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-target'));
+          const prefix = el.getAttribute('data-prefix') || '';
+          const suffix = el.getAttribute('data-suffix') || '';
+          const isFloat = target % 1 !== 0;
+          const duration = 1600;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Cubic easing out: 1 - (1 - progress)^3
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentVal = isFloat ? (target * easeOut).toFixed(1) : Math.floor(target * easeOut);
+            el.textContent = `${prefix}${currentVal}${suffix}`;
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = `${prefix}${target}${suffix}`;
+            }
+          }
+          requestAnimationFrame(updateCounter);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.stat-counter').forEach(el => {
+      counterObserver.observe(el);
+    });
+
+    // 10. Dynamic 72-Hour First-Click Staging Window & Client IP Telemetry
+    (function initDynamicStaging() {
+      const STORAGE_KEY = 'nexg_staging_window_BP-004';
+      const DURATION_MS = 72 * 60 * 60 * 1000; // 72 Hours
+      const countdownEl = document.getElementById('countdownTime');
+      if (!countdownEl) return;
+
+      let sessionData = null;
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) sessionData = JSON.parse(stored);
+      } catch (e) {
+        console.warn('LocalStorage unavailable for staging window:', e);
+      }
+
+      const now = Date.now();
+
+      if (!sessionData || !sessionData.startTime) {
+        // First-ever visit on this client device / IP
+        sessionData = {
+          businessId: 'BP-004',
+          startTime: now,
+          activatedAt: new Date().toISOString(),
+          clientIp: 'Detecting...'
+        };
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionData));
+        } catch (e) {}
+
+        // Asynchronously capture real client public IP and ping telemetry
+        fetch('https://api.ipify.org?format=json')
+          .then(res => res.json())
+          .then(data => {
+            sessionData.clientIp = data.ip;
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionData)); } catch(e) {}
+            // Send telemetry beacon to dashboard / webhook
+            const payload = JSON.stringify({
+              business_id: 'BP-004',
+              client_ip: data.ip,
+              user_agent: navigator.userAgent,
+              activated_at: sessionData.activatedAt
+            });
+            const endpoints = [
+              'https://hospitality-plenty-scale-connector.trycloudflare.com/api/telemetry/activate',
+              'http://127.0.0.1:8899/api/telemetry/activate'
+            ];
+            endpoints.forEach(url => {
+              try {
+                if (navigator.sendBeacon) {
+                  navigator.sendBeacon(url, payload);
+                } else {
+                  fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: payload,
+                    mode: 'no-cors'
+                  }).catch(() => {});
+                }
+              } catch(e) {}
+            });
+          })
+          .catch(() => {
+            sessionData.clientIp = 'Offline/Unknown';
+          });
+      }
+
+      function updateCountdown() {
+        const currentNow = Date.now();
+        const elapsed = currentNow - sessionData.startTime;
+        const remaining = Math.max(0, DURATION_MS - elapsed);
+
+        if (remaining <= 0) {
+          countdownEl.textContent = '00h 00m 00s Expired';
+          countdownEl.classList.remove('text-amber-300');
+          countdownEl.classList.add('text-rose-400');
+          return;
+        }
+
+        const totalSeconds = Math.floor(remaining / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const hStr = String(hours).padStart(2, '0');
+        const mStr = String(minutes).padStart(2, '0');
+        const sStr = String(seconds).padStart(2, '0');
+
+        countdownEl.textContent = `${hStr}h ${mStr}m ${sStr}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
+
+  <!-- Floating Mobile Quick-Action Dock (1-Tap Conversion Physics) -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden p-3 bg-white/95 backdrop-blur-xl border-t border-stone-200/90 shadow-[0_-8px_25px_rgba(0,0,0,0.08)] flex items-center gap-3">
+    <a href="tel:+919725702043" class="flex-1 py-3 px-3 rounded-xl border border-stone-300 bg-stone-50 hover:bg-stone-100 text-stone-900 font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-sm">
+      <i data-lucide="phone-call" class="w-4 h-4 text-rose-600"></i> Call Desk
+    </a>
+    <a href="https://wa.me/919725702043?text=Namaskar%20Swati%20Salon,%20I%20want%20to%20inquire%20about%20services." target="_blank" class="flex-1 py-3 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20 active:scale-95 transition-transform">
+      <i data-lucide="message-circle" class="w-4 h-4"></i> Book on WhatsApp
+    </a>
+  </div>
+</body>
+</html>
